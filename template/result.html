@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container mt-5">
+    <h2 class="mb-4">Analysis Result</h2>
+
+    {% if error %}
+        <div class="alert alert-danger">{{ error }}</div>
+    {% elif result %}
+        <div class="card shadow p-4">
+            <h5 class="mb-3">Original Text:</h5>
+            <p>{{ result.original_text }}</p>
+
+            <h5 class="mt-4">Platform:</h5>
+            <p>{{ result.platform }}</p>
+
+            <h5 class="mt-4">Risk Score:</h5>
+            <p><strong>{{ result.risk_score }}/10</strong> (Confidence: {{ result.confidence }})</p>
+
+            <h5 class="mt-4">Risk Level:</h5>
+            <p>
+                {% if result.risk_level == 'high' %}
+                    <span class="badge bg-danger text-white">High</span>
+                {% elif result.risk_level == 'medium' %}
+                    <span class="badge bg-warning text-dark">Medium</span>
+                {% else %}
+                    <span class="badge bg-success text-white">Low</span>
+                {% endif %}
+            </p>
+
+            <h5 class="mt-4">Interpretation:</h5>
+            <p>{{ result.interpretation }}</p>
+
+            <h5 class="mt-4">Model Comment:</h5>
+            <p>{{ result.details }}</p>
+        </div>
+    {% else %}
+        <div class="alert alert-info">No result to show.</div>
+    {% endif %}
+
+    <div class="mt-4 text-center">
+        <a href="/" class="btn btn-secondary">Analyze Another Text</a>
+    </div>
+</div>
+{% endblock %}

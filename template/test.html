@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h2>🧪 AI Test Results</h2>
+
+<div class="row">
+    {% for result in results %}
+    <div class="col-md-4">
+        <div class="card mb-3">
+            <div class="card-body">
+                <p><strong>Text:</strong> "{{ result.text }}"</p>
+                <p><strong>Score:</strong> {{ result.score }}/10</p>
+                <p><strong>Level:</strong> 
+                    <span class="badge 
+                        {% if result.level == 'high' %}bg-danger
+                        {% elif result.level == 'medium' %}bg-warning
+                        {% else %}bg-success{% endif %}">
+                        {{ result.level.upper() }}
+                    </span>
+                </p>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+
+<a href="/" class="btn btn-primary">Back to Main App</a>
+{% endblock %}

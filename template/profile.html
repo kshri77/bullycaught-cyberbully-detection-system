@@ -1,0 +1,172 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profile - BullyCaught</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: linear-gradient(135deg, #e0c3fc 0%, #8ec5fc 100%);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            padding: 20px;
+        }
+
+        .profile-container {
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+            padding: 30px;
+            width: 80%;
+            max-width: 800px;
+            text-align: center;
+            margin: 20px;
+        }
+
+        h1 {
+            color: #333;
+            margin-bottom: 20px;
+        }
+
+        h2 {
+            color: #444;
+            margin: 25px 0 15px;
+            text-align: left;
+            font-size: 18px;
+            padding-left: 10px;
+        }
+
+        table {
+            width: 100%;
+            margin-bottom: 20px;
+            border-collapse: collapse;
+        }
+
+        td {
+            padding: 10px;
+            text-align: left;
+            border-bottom: 1px solid #eee;
+        }
+
+        input[type="password"] {
+            width: calc(100% - 22px);
+            padding: 10px;
+            margin: 8px 0;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            box-sizing: border-box;
+        }
+
+        input[type="submit"] {
+            background-color: #4285f4;
+            color: white;
+            padding: 12px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            width: 100%;
+            margin-top: 10px;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #3367d6;
+        }
+
+        .comments-container {
+            margin-top: 20px;
+            text-align: left;
+        }
+
+        .comment {
+            background-color: #f9f9f9;
+            border-left: 4px solid #ff5252;
+            padding: 15px;
+            margin-bottom: 15px;
+            border-radius: 5px;
+        }
+
+        .alert {
+            color: #ff5252;
+            font-weight: bold;
+        }
+
+        .no-comments {
+            color: #777;
+            font-style: italic;
+            padding: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="profile-container">
+        <h1>Your Profile</h1>
+
+        <!-- Flash Messages -->
+        {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+                {% for category, message in messages %}
+                    <div style="color: {% if category == 'success' %}green{% elif category == 'danger' %}red{% else %}blue{% endif %};">
+                        {{ message }}
+                    </div>
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
+
+        <!-- Personal Details Section -->
+        <h2>Personal Details</h2>
+        <table>
+            <tr>
+                <td width="20%"><strong>Name:</strong></td>
+                <td>{{ user.username }}</td>
+            </tr>
+            <tr>
+                <td><strong>Email:</strong></td>
+                <td>{{ user.email }}</td>
+            </tr>
+        </table>
+
+        <!-- Change Password Section -->
+        <h2>Change Password</h2>
+        <form method="POST">
+            <table>
+                <tr>
+                    <td><label for="currentPassword">Current Password:</label></td>
+                    <td><input type="password" id="currentPassword" name="currentPassword" required></td>
+                </tr>
+                <tr>
+                    <td><label for="newPassword">New Password:</label></td>
+                    <td><input type="password" id="newPassword" name="newPassword" required></td>
+                </tr>
+                <tr>
+                    <td><label for="confirmPassword">Confirm New Password:</label></td>
+                    <td><input type="password" id="confirmPassword" name="confirmPassword" required></td>
+                </tr>
+                <tr>
+                    <td colspan="2"><input type="submit" value="Change Password"></td>
+                </tr>
+            </table>
+        </form>
+
+        <!-- High Bully Detected Comments Section -->
+        <h2>High Bully Detected Comments</h2>
+        <div class="comments-container">
+            {% if comments %}
+                {% for comment in comments %}
+                    <div class="comment">
+                        <p><strong>Comment:</strong> {{ comment.text }}</p>
+                        <p class="alert">⚠️ {{ comment.alert_message }}</p>
+                    </div>
+                {% endfor %}
+            {% else %}
+                <p class="no-comments">No high-risk comments detected.</p>
+            {% endif %}
+        </div>
+    </div>
+</body>
+</html>

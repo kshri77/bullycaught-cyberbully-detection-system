@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>LearnSmarter — Personalized Learning</title>
+<script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Poppins:wght@600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --radius:14px;
+  --max-w:1100px;
+  --accent:#ff6b6b;
+  --accent-2:#20c997;
+  --accent-3:#ffd93d;
+  --accent-4:#4dabf7;
+  --bg:#fefefe;
+  --muted:#555;
+}
+
+/* Global */
+*{box-sizing:border-box;}
+html,body{margin:0;padding:0;font-family:Inter,sans-serif;background:#fefefe;color:#374151;line-height:1.5;}
+.container{max-width:var(--max-w);margin:0 auto;padding:32px;}
+a{text-decoration:none;}
+
+/* Header */
+header{position:sticky;top:0;background:rgba(255,255,255,0.95);backdrop-filter:blur(6px);z-index:50;border-bottom:1px solid #eee;}
+.nav{display:flex;align-items:center;justify-content:space-between;padding:12px 0;}
+.brand{display:flex;gap:12px;align-items:center;}
+.logo{width:48px;height:48px;border-radius:10px;background:linear-gradient(135deg,var(--accent),var(--accent-3));display:flex;align-items:center;justify-content:center;font-weight:700;color:#fff;font-family:Poppins;}
+.nav-links{display:flex;gap:18px;align-items:center;}
+.nav-links a{color:#1E3A8A;font-weight:600;}
+.btn{padding:10px 16px;border-radius:10px;border:0;background:var(--accent-4);color:#fff;font-weight:700;cursor:pointer;transition:transform .2s;}
+.btn:hover{transform:scale(1.05);}
+.btn-ghost{background:transparent;border:2px solid var(--accent-4);color:var(--accent-4);padding:9px 14px;border-radius:10px;font-weight:600;transition:transform .2s;}
+.btn-ghost:hover{transform:scale(1.05);}
+
+/* HERO */
+.hero{display:grid;grid-template-columns:1fr 480px;gap:28px;align-items:center;padding:64px 0;position:relative;}
+.hero h1{font-family:Poppins;font-size:62px;margin:0 0 16px;color:#1E3A8A;}
+.hero p{color:#374151;margin:0 0 20px;font-size:16px;}
+.hero-ctas{display:flex;gap:12px;flex-wrap:wrap;}
+.hero .mascot{
+  position:relative;
+  width:100%;
+  height:400px;
+  background:url('https://i.ibb.co/8bHg1F4/student-mascot.png') no-repeat center bottom/contain;
+  transition: transform 0.5s ease-in-out;
+}
+.hero .mascot:hover{transform: translateY(-10px) rotate(-3deg);}
+.floating-icon{position:absolute;font-size:28px;animation:floating 4s ease-in-out infinite;}
+@keyframes floating{0%,100%{transform:translateY(0);}50%{transform:translateY(-15px);}}
+
+/* Badge animation */
+@keyframes pulse{0%,100%{transform:scale(1);}50%{transform:scale(1.1);}}
+.badge{display:inline-block;padding:4px 8px;border-radius:8px;background:#10B981;color:#fff;font-size:12px;font-weight:700;animation:pulse 2s infinite;}
+
+/* HOW IT WORKS */
+.steps{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:24px;margin-top:32px;}
+.step{background:#f9fafb;border-radius:var(--radius);padding:24px;text-align:center;box-shadow:0 4px 10px rgba(0,0,0,0.05);transition:transform .25s,background .25s,border .25s;}
+.step:hover{transform:translateY(-8px);background:#dbeafe;border:2px solid #3B82F6;}
+.step .num{display:inline-flex;justify-content:center;align-items:center;width:40px;height:40px;border-radius:50%;background:#3B82F6;color:#fff;font-weight:700;margin-bottom:12px;}
+.step .icon{font-size:32px;margin-bottom:12px;}
+.section-title{font-family:Poppins;font-size:32px;color:#3B82F6;text-align:center;margin-bottom:24px;}
+
+/* FEATURES */
+.features{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:24px;margin-top:32px;}
+.feature{background:#fff;border-radius:var(--radius);padding:20px;text-align:left;box-shadow:0 2px 12px rgba(0,0,0,0.05);transition:transform .25s,background .25s;}
+.feature:hover{transform:translateY(-6px);background:#FEF3C7;}
+.feature .icon{font-size:28px;margin-bottom:10px;color:#F97316;}
+
+/* TESTIMONIALS */
+.testimonials{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:16px;margin-top:24px;}
+.testimonial{background:#fdf6e3;border-radius:var(--radius);padding:16px;box-shadow:0 2px 8px rgba(0,0,0,0.05);transition:transform .25s;}
+.testimonial:hover{transform:translateY(-4px);background:#fff7dc;}
+
+/* CTA Banner */
+.cta-banner {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 40px 24px;
+    margin-top: 48px;
+    border-radius: var(--radius);
+    background: #ffffff; /* changed from gradient to white */
+    color: #1e3a8a; /* text color: deep blue for contrast */
+    flex-wrap: wrap;
+    gap: 12px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.08); /* subtle shadow for depth */
+}
+
+.cta-banner div {
+    font-weight: 700;
+    font-size: 20px;
+    color: #1e3a8a; /* match text color */
+}
+
+/* FOOTER */
+footer{margin-top:64px;padding:32px;background:#4dabf7;color:#fff;border-radius:var(--radius);display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:16px;}
+footer a{color:#fff;font-weight:600;}
+</style>
+</head>
+<body>
+<header>
+  <div class="container nav">
+    <div class="brand">
+      <div class="logo">LS</div>
+      <div>
+        <div style="font-weight:700">LearnBuddy</div>
+        <div style="font-size:12px;color:#374151;">Adaptive learning, simplified</div>
+      </div>
+    </div>
+    <nav class="nav-links">
+      <a href="#how">How it Works</a>
+      <a href="#features">Features</a>
+      <a href="#testimonials">Testimonials</a>
+      <button class="btn">Sign Up</button>
+    </nav>
+  </div>
+</header>
+
+<main class="container">
+  <!-- HERO -->
+  <section class="hero">
+    <div>
+      <h1>Learn Smarter, Not Harder ✨</h1>
+      <p>Take fun quizzes, follow your personalized learning path, and track progress with adaptive lessons.</p>
+      <div class="hero-ctas">
+        <button class="btn">Get Started — It's Free</button>
+        <button class="btn-ghost">Try a Demo Quiz</button>
+      </div>
+    </div>
+      <lottie-player
+      src="lottie/student.json" 
+    speed="1"
+    style="width:400px; height:400px;"
+    loop
+    autoplay>
+</lottie-player>
+
+ 
+
+  </section>
+
+  <!-- HOW IT WORKS -->
+  <section id="how">
+    <h2 class="section-title">How It Works</h2>
+    <div class="steps">
+      <div class="step"><div class="num">1</div><div class="icon">👤</div><h4>Create Account</h4><p>Sign up in seconds and set up your learning profile.</p></div>
+      <div class="step"><div class="num">2</div><div class="icon">📝</div><h4>Take a Fun Quiz</h4><p>Start with quick assessments to check your level & mood.</p></div>
+      <div class="step"><div class="num">3</div><div class="icon">🎯</div><h4>Personalized Path</h4><p>Our AI builds a unique journey for your speed & style of learning.</p></div>
+      <div class="step"><div class="num">4</div><div class="icon">⚖️</div><h4>Dynamic Adjustments</h4><p>Slow bloomers get extra modules & support 💡, fast learners skip what they already know 🚀.</p></div>
+      <div class="step"><div class="num">5</div><div class="icon">🎮</div><h4>Stay Motivated</h4><p>If you feel bored, jump into fun quizzes anytime 🔥.</p></div>
+      <div class="step"><div class="num">6</div><div class="icon">🃏</div><h4>Smart Flashcards</h4><p>Auto-generated flashcards for quick revision & memory boost 📚.</p></div>
+      <div class="step"><div class="num">7</div><div class="icon">📈</div><h4>Track Progress</h4><p>See growth over time, get focus suggestions, and unlock milestones 🏆.</p></div>
+      <div class="step"><div class="num">8</div><div class="icon">🤖</div><h4>Instant Doubt Help</h4><p>Stuck somewhere? Ask your doubt and get instant hints or AI guidance 🧠.</p></div>
+    </div>
+  </section>
+
+  <!-- FEATURES -->
+  <section id="features">
+    <h2 class="section-title">Key Benefits & Features</h2>
+    <div class="features">
+      <div class="feature"><div class="icon">A</div><h4>Adaptive Quizzes</h4><p>Quizzes adapt in difficulty to pinpoint strengths and gaps quickly.</p></div>
+      <div class="feature"><div class="icon">T</div><h4>Tailored Modules</h4><p>Custom modules for every grade and subject—pick the topics you want.</p></div>
+      <div class="feature"><div class="icon">P</div><h4>Progress Tracking</h4><p>Smart analytics show growth over time, strengths, and focus areas.</p></div>
+      <div class="feature"><div class="icon">R</div><h4>Focused Re-learning</h4><p>Targeted recommendations to revisit concepts you missed.</p></div>
+    </div>
+  </section>
+
+  <!-- FLASHCARDS PREVIEW -->
+<section id="flashcards">
+  <h2 class="section-title">Interactive Flashcards</h2>
+  <div class="flashcards" style="display:flex;gap:20px;flex-wrap:wrap;justify-content:center;margin-top:24px;">
+    <div class="flashcard" style="width:180px;height:120px;background:var(--accent-2);border-radius:var(--radius);color:#fff;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:16px;perspective:1000px;cursor:pointer;">
+      <div class="flashcard-inner" style="position:relative;width:100%;height:100%;text-align:center;transition:transform 0.6s;transform-style:preserve-3d;border-radius:var(--radius);">
+        <div class="flashcard-front" style="position:absolute;width:100%;height:100%;backface-visibility:hidden;display:flex;align-items:center;justify-content:center;border-radius:var(--radius);">5 × 6 = ?</div>
+        <div class="flashcard-back" style="position:absolute;width:100%;height:100%;backface-visibility:hidden;display:flex;align-items:center;justify-content:center;border-radius:var(--radius);transform:rotateY(180deg);background:var(--accent-3);">30 ✅</div>
+      </div>
+    </div>
+    <div class="flashcard" style="width:180px;height:120px;background:var(--accent-2);border-radius:var(--radius);color:#fff;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:16px;perspective:1000px;cursor:pointer;">
+      <div class="flashcard-inner" style="position:relative;width:100%;height:100%;text-align:center;transition:transform 0.6s;transform-style:preserve-3d;border-radius:var(--radius);">
+        <div class="flashcard-front" style="position:absolute;width:100%;height:100%;backface-visibility:hidden;display:flex;align-items:center;justify-content:center;border-radius:var(--radius);">Capital of France?</div>
+        <div class="flashcard-back" style="position:absolute;width:100%;height:100%;backface-visibility:hidden;display:flex;align-items:center;justify-content:center;border-radius:var(--radius);transform:rotateY(180deg);background:var(--accent-3);">Paris ✅</div>
+      </div>
+    </div>
+    <div class="flashcard" style="width:180px;height:120px;background:var(--accent-2);border-radius:var(--radius);color:#fff;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:16px;perspective:1000px;cursor:pointer;">
+      <div class="flashcard-inner" style="position:relative;width:100%;height:100%;text-align:center;transition:transform 0.6s;transform-style:preserve-3d;border-radius:var(--radius);">
+        <div class="flashcard-front" style="position:absolute;width:100%;height:100%;backface-visibility:hidden;display:flex;align-items:center;justify-content:center;border-radius:var(--radius);">H₂O is?</div>
+        <div class="flashcard-back" style="position:absolute;width:100%;height:100%;backface-visibility:hidden;display:flex;align-items:center;justify-content:center;border-radius:var(--radius);transform:rotateY(180deg);background:var(--accent-3);">Water ✅</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+const flashcards = document.querySelectorAll('.flashcard');
+flashcards.forEach(card => {
+  card.addEventListener('mouseenter', () => {
+    const inner = card.querySelector('.flashcard-inner');
+    inner.style.transform = 'rotateY(180deg)';
+  });
+  card.addEventListener('mouseleave', () => {
+    const inner = card.querySelector('.flashcard-inner');
+    inner.style.transform = 'rotateY(0deg)';
+  });
+});
+</script>
+
+  <!-- TESTIMONIALS -->
+  <section id="testimonials">
+    <h2 class="section-title">What learners & teachers say</h2>
+    <div class="testimonials">
+      <div class="testimonial"><div>"Made algebra fun again!"</div><div style="font-size:13px;margin-top:6px;color:#374151;">– Asha, Grade 10</div></div>
+      <div class="testimonial"><div>"The analytics helped my students improve by 23%."</div><div style="font-size:13px;margin-top:6px;color:#374151;">– Mr. Rao, Maths Teacher</div></div>
+      <div class="testimonial"><div>"Short quizzes, big results."</div><div style="font-size:13px;margin-top:6px;color:#374151;">– Shruti, Parent</div></div>
+    </div>
+  </section>
+
+  <!-- CTA Banner -->
+  <section class="cta-banner">
+    <div>
+      <div>Ready to start your learning journey?</div>
+      <div style="font-size:13px;font-weight:400;">Join thousands of learners getting smarter every day.</div>
+    </div>
+    <div style="display:flex;gap:12px;align-items:center">
+      <button class="btn">Sign Up Free</button>
+      <button class="btn-ghost">Take Demo Quiz</button>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div>
+      <div style="font-weight:700">LearnSmarter</div>
+      <div style="font-size:13px">Adaptive learning • Privacy-first • Student friendly</div>
+    </div>
+    <div style="display:flex;gap:12px;align-items:center">
+      <a href="#">About</a>
+      <a href="#">Contact</a>
+      <a href="#">Privacy</a>
+    </div>
+  </footer>
+</main>
+</body>
+</html>

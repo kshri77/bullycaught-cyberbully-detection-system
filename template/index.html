@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-md-8">
+        <div class="card p-4 mb-5">
+            <h2 class="text-center mb-4" style="color: #4A4A4A;">Cyberbullying Detection System</h2>
+
+            <form method="POST" action="/analyze">
+                <div class="mb-3">
+                    <label for="text" class="form-label">Enter text to analyze:</label>
+                    <textarea class="form-control" id="text" name="text" rows="4"
+                              placeholder="Paste social media content here..." required></textarea>
+                </div>
+
+                <div class="mb-3">
+                    <label for="platform" class="form-label">Platform:</label>
+                    <select class="form-select" name="platform">
+                        <option value="twitter">Twitter</option>
+                        <option value="instagram">Instagram</option>
+                        <option value="facebook">Facebook</option>
+                        <option value="other">Other</option>
+                    </select>
+                </div>
+
+                <button type="submit" class="btn btn-primary btn-lg w-100">Analyze Risk</button>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}
